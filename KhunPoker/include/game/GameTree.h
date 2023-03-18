@@ -11,6 +11,7 @@
 #include <nodes/GameTreeNode.h>
 #include <nodes/ActionNode.h>
 #include <nodes/ChanceNode.h>
+#include <nodes/TerminalNode.h>
 #include <game/Deck.h>
 
 
@@ -44,6 +45,28 @@ class GameTree
     std::shared_ptr<GameTreeNode> build(
       std::shared_ptr<ChanceNode> node,
       Deck deck
+    );
+
+    std::shared_ptr<ActionNode> generateNode(
+      std::shared_ptr<ActionNode> node,
+      Deck deck
+    );
+    std::shared_ptr<ChanceNode> generateNode(
+      std::shared_ptr<ChanceNode> node,
+      Deck deck
+    );
+    std::shared_ptr<TerminalNode> generateNode(
+      std::shared_ptr<TerminalNode> node,
+      Deck deck
+    );
+
+    int updateDepth(
+      std::shared_ptr<ActionNode> node,
+      int depth
+    );
+    int updateDepth(
+      std::shared_ptr<ChanceNode> node,
+      int depth
     );
 
     std::shared_ptr<GameTreeNode> getRootNode();
