@@ -12,7 +12,9 @@
 #include <nodes/ActionNode.h>
 #include <nodes/ChanceNode.h>
 #include <nodes/TerminalNode.h>
+#include <game/GameState.h>
 #include <game/Deck.h>
+
 
 
 /** 
@@ -27,6 +29,7 @@ class GameTree
   private:
     std::string json_tree; //? do we want to use json for this like TexasSolver does
     std::shared_ptr<GameTreeNode> root = nullptr;
+    GameState state;
 
   public:
     GameTree( //? do we want ability to load GameTree from json
@@ -34,30 +37,29 @@ class GameTree
       Deck deck
     );
     GameTree(
-      Deck deck,
-      int current_round
+      GameState state
     );
 
     std::shared_ptr<GameTreeNode> build(
       std::shared_ptr<ActionNode> node,
-      Deck deck
+      GameState state
     );
     std::shared_ptr<GameTreeNode> build(
       std::shared_ptr<ChanceNode> node,
-      Deck deck
+      GameState state
     );
 
     std::shared_ptr<ActionNode> generateNode(
       std::shared_ptr<ActionNode> node,
-      Deck deck
+      GameState state
     );
     std::shared_ptr<ChanceNode> generateNode(
       std::shared_ptr<ChanceNode> node,
-      Deck deck
+      GameState state
     );
     std::shared_ptr<TerminalNode> generateNode(
       std::shared_ptr<TerminalNode> node,
-      Deck deck
+      GameState state
     );
 
     int updateDepth(
