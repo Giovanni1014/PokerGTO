@@ -1,2 +1,0 @@
-/Library/Developer/CommandLineTools/usr/bin/ar qc libKhunPoker.a CMakeFiles/KhunPoker.dir/src/Main.cpp.o CMakeFiles/KhunPoker.dir/src/util/Card.cpp.o CMakeFiles/KhunPoker.dir/src/util/Deck.cpp.o
-/Library/Developer/CommandLineTools/usr/bin/ranlib libKhunPoker.a
