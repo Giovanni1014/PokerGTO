@@ -1,3 +1,4 @@
 KhunPoker/target/*
 .vscode/
+.vscode/*
 !KhunPoker/target/.gitkeep 
