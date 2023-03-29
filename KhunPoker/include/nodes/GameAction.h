@@ -1,14 +1,14 @@
-#ifndef GAMEACTIONS_H
-#define GAMEACTIONS_H
+#ifndef GAMEACTION_H
+#define GAMEACTION_H
 
 #include <string>
 #include <vector>
 #include "nodes/GameTreeNode.h"
 
-class GameActions
+class GameAction
 {
 public:
-    enum PokerActions
+    enum PokerAction
     {
         BEGIN,
         ROUNDBEGIN,
@@ -19,17 +19,17 @@ public:
         CALL
     };
 
-    GameActions();
-    GameActions(PokerActions action, double amount);
+    GameAction();
+    GameAction(PokerAction action, double amount);
 
-    PokerActions getAction() const;
+    PokerAction getAction() const;
     double getAmount() const;
 
     std::string toString() const;
 
 private:
-    const PokerActions action;
+    const PokerAction action;
     const double amount{};
 };
 
-#endif // GAMEACTIONS_H
+#endif // GAMEACTION_H

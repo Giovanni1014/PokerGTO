@@ -3,18 +3,18 @@
 
 #include <trainable/Trainable.h>
 #include "GameTreeNode.h"
-#include "GameActions.h"
+#include "GameAction.h"
 
 using std::vector;
 
 class ActionNode : public GameTreeNode
 {
 public:
-    ActionNode(vector<GameActions> actions, vector<shared_ptr<GameTreeNode>> childrens, int player, double pot, shared_ptr<GameTreeNode> parent);
+    ActionNode(vector<GameAction> actions, vector<shared_ptr<GameTreeNode>> childrens, int player, double pot, shared_ptr<GameTreeNode> parent);
 
     vector<float> utility(vector<float> reach_probs) override;
 
-    vector<GameActions> &getActions() const;
+    vector<GameAction> &getActions() const;
     // void setActions(const vector<GameActions> &actions);
 
     vector<shared_ptr<GameTreeNode>> &getChildrens() const;
@@ -29,7 +29,7 @@ public:
 
 private:
     // GameTreeNodeType getType() override;
-    const vector<GameActions> actions;
+    const vector<GameAction> actions;
     const vector<shared_ptr<GameTreeNode>> childrens;
     const shared_ptr<Trainable> trainable; // ! removed vector
     const int player;                      // ! Player Enum?
