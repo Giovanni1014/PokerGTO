@@ -12,6 +12,8 @@ class ActionNode : public GameTreeNode
 public:
     ActionNode(vector<GameActions> actions, vector<shared_ptr<GameTreeNode>> childrens, int player, double pot, shared_ptr<GameTreeNode> parent);
 
+    vector<float> utility(vector<float> reach_probs) override;
+
     vector<GameActions> &getActions() const;
     // void setActions(const vector<GameActions> &actions);
 

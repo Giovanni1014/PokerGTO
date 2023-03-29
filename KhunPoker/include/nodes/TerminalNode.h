@@ -9,15 +9,18 @@ class TerminalNode : public GameTreeNode
 {
 public:
     TerminalNode();
-    TerminalNode(vector<double> payoffs, int winner, double pot, shared_ptr<GameTreeNode> parent);
-    vector<double> get_payoffs();
+    TerminalNode(int winner, double pot, shared_ptr<GameTreeNode> parent);
+
+    vector<float> utility(vector<float> reach_probs) override;
+    // TerminalNode(vector<double> payoffs, int winner, double pot, shared_ptr<GameTreeNode> parent);
+    // vector<double> get_payoffs();
 
     // private:
     // GameTreeNodeType getType() override;
 
 private:
-    vector<double> payoffs;
-    int winner{};
+    // vector<double> payoffs;
+    const int winner{}; // ! player enum
 };
 
 #endif // TERMINALNODE_H

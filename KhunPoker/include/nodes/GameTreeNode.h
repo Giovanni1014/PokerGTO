@@ -8,13 +8,13 @@ using std::shared_ptr;
 class GameTreeNode
 {
 public:
-    enum GameTreeNodeType
-    {
-        ACTION,
-        SHOWDOWN,
-        TERMINAL,
-        CHANCE
-    };
+    // enum GameTreeNodeType
+    // {
+    //     ACTION,
+    //     SHOWDOWN,
+    //     TERMINAL,
+    //     CHANCE
+    // };
 
     GameTreeNode();
     GameTreeNode(double pot, shared_ptr<GameTreeNode> parent);
@@ -25,6 +25,8 @@ public:
     shared_ptr<GameTreeNode> getParent() const;
     // void setParent(shared_ptr<GameTreeNode> parent);
     double getPot() const;
+
+    virtual vector<float> utility(vector<float> reach_probs); // * size is number of hands
 
     // void printHistory();
     // static void printNodeHistory(GameTreeNode *node);
