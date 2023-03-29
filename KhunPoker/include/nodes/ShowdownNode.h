@@ -17,7 +17,7 @@ public:
     // ShowdownNode(vector<double> tie_payoffs, vector<vector<double>> player_payoffs, double pot, shared_ptr<GameTreeNode> parent);
     ShowdownNode(double pot, shared_ptr<GameTreeNode> parent);
 
-    vector<float> utility(vector<float> reach_probs) override;
+    vector<float> utility(int player, vector<float> reach_probs) override;
     // vector<double> get_payoffs(ShowDownResult result, int winner);
     // double get_payoffs(ShowDownResult result, int winner, int player);
 

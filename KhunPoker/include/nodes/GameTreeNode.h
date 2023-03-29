@@ -26,7 +26,7 @@ public:
     // void setParent(shared_ptr<GameTreeNode> parent);
     double getPot() const;
 
-    virtual vector<float> utility(vector<float> reach_probs); // * size is number of hands
+    virtual vector<float> utility(int player, vector<float> reach_probs); // * size is number of hands
 
     // void printHistory();
     // static void printNodeHistory(GameTreeNode *node);

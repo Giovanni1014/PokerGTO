@@ -11,7 +11,7 @@ public:
     TerminalNode();
     TerminalNode(int winner, double pot, shared_ptr<GameTreeNode> parent);
 
-    vector<float> utility(vector<float> reach_probs) override;
+    vector<float> utility(int player, vector<float> reach_probs) override;
     // TerminalNode(vector<double> payoffs, int winner, double pot, shared_ptr<GameTreeNode> parent);
     // vector<double> get_payoffs();
 
