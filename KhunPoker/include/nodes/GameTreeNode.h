@@ -1,7 +1,9 @@
 #ifndef GAMETREENODE_H
 #define GAMETREENODE_H
+
 #include <string>
 #include <vector>
+#include "Player.h"
 
 using std::shared_ptr, std::vector;
 
@@ -26,7 +28,7 @@ public:
     // void setParent(shared_ptr<GameTreeNode> parent);
     double getPot() const;
 
-    virtual vector<float> utility(int player, vector<float> reach_probs); // * size is number of hands
+    virtual vector<float> utility(Player player, vector<float> reach_probs); // * size is number of hands
 
     // void printHistory();
     // static void printNodeHistory(GameTreeNode *node);
