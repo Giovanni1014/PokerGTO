@@ -8,12 +8,13 @@
 
 #include <string>
 
-#include <nodes/GameTreeNode.h>
+#include <game/GameState.h>
 #include <nodes/ActionNode.h>
 #include <nodes/ChanceNode.h>
 #include <nodes/TerminalNode.h>
-#include <game/GameState.h>
-#include <game/Deck.h>
+#include <nodes/ShowdownNode.h>
+#include <nodes/GameTreeNode.h>
+
 
 
 
@@ -32,12 +33,21 @@ class GameTree
 
     GameTree(GameState gameState);
 
+
+    /**
+     * @fn build()
+     * @brief the goal after build() is to have the entire GameTree initiated. All weights will be 1/3 for Kuhn
+    */
     std::shared_ptr<GameTreeNode> build(
       std::shared_ptr<ActionNode> node,
       GameState state
     );
     std::shared_ptr<GameTreeNode> build(
-      std::shared_ptr<ChanceNode> node,
+      std::shared_ptr<TerminalNode> node,
+      GameState state
+    );
+    std::shared_ptr<GameTreeNode> build(
+      std::shared_ptr<ShowdownNode> node,
       GameState state
     );
 
