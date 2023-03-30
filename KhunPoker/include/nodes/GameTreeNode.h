@@ -1,13 +1,38 @@
-/**
- * @file GameTreeNode.h
- * @brief contains the GameTreeNode class, see brief below.
- */
+#ifndef GAMETREENODE_H
+#define GAMETREENODE_H
 
-#ifndef KHUNSOLVER_INCLUDE_GAMETREENODE_H_
-#define KHUNSOLVER_INCLUDE_GAMETREENODE_H_
+#include <string>
+#include <vector>
+#include "Player.h"
 
-class GameTreeNode
-{
+using std::shared_ptr, std::vector;
+
+class GameTreeNode {
+    public:
+        enum GameTreeNodeType {
+            ACTION,
+            SHOWDOWN,
+            TERMINAL,
+            // CHANCE ! needed for NLTH 
+        };
+
+        GameTreeNode();
+        GameTreeNode(float pot, shared_ptr<GameTreeNode> parent);
+
+        // int depth{};
+        // int subtree_size{};
+
+        shared_ptr<GameTreeNode> getParent() const;
+        // void setParent(shared_ptr<GameTreeNode> parent);
+        float getPot() const;
+
+        virtual vector<float> utility(const Player player, const vector<float>& reach_probs); 
+
+        virtual const GameTreeNodeType getType() = 0;
+
+    private:
+        const float pot{};
+        const shared_ptr<GameTreeNode> parent;
 };
 
-#endif //KHUNSOLVER_INCLUDE_GAMETREENODE_H_
+#endif // GAMETREENODE_H
