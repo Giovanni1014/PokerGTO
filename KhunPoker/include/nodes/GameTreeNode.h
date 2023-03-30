@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 
-using std::shared_ptr;
+using std::shared_ptr, std::vector;
 
 class GameTreeNode
 {
