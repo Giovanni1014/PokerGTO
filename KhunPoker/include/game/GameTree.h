@@ -19,7 +19,7 @@
 
 /** 
  * @class GameTree
- * @brief the Monte Carlo tree containing all possible nodes
+ * @brief the GameTree
  * 
  * See TexasSolver's implemenetation at:
  * https://github.com/bupticybee/TexasSolver/blob/console/include/GameTree.h
@@ -28,14 +28,9 @@ class GameTree
 {
   public:
     std::shared_ptr<GameTreeNode> root = nullptr;
-    GameState state;
+    GameState gameState;
 
-    GameTree(
-      Node deck
-    );
-    GameTree(
-      GameState state
-    );
+    GameTree(GameState gameState);
 
     std::shared_ptr<GameTreeNode> build(
       std::shared_ptr<ActionNode> node,
