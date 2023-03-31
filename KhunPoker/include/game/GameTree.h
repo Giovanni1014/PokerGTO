@@ -33,7 +33,8 @@ class GameTree
 
     GameTree(GameState gameState);
     
-    void build(); //initiates root
+    void build(const GameState& gameState); //initiates root
+    
     shared_ptr<GameTreeNode> buildSubtree(); //recursively build tree
 };
 
