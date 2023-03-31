@@ -21,6 +21,7 @@ class ShowdownNode : public GameTreeNode {
         // vector<double> get_payoffs(ShowDownResult result, int winner);
         // double get_payoffs(ShowDownResult result, int winner, int player);
 
+        GameTreeNodeType getType() override;
         float getPot() const;
 
         // private:

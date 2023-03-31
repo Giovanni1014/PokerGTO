@@ -11,6 +11,7 @@ TerminalNode::TerminalNode(Player winner, float pot, shared_ptr<GameTreeNode> pa
 }
 
 vector<float> TerminalNode::utility(const Player player, const vector<float>& reach_probs) override {
+    // ! don't need reach_probs here
     if (player == this.winner) {
         return this.pot;
     } else {

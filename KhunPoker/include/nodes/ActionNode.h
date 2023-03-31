@@ -10,7 +10,7 @@ using std::vector;
 
 class ActionNode : public GameTreeNode {
     public:
-        ActionNode(vector<GameAction> actions, vector<shared_ptr<GameTreeNode>> childrens, Player player, float pot, shared_ptr<GameTreeNode> parent);
+        ActionNode(vector<GameAction> actions, vector<shared_ptr<GameTreeNode>> childrens, Player player, shared_ptr<GameTreeNode> parent);
 
         vector<float> utility(const Player player, const vector<float>& reach_probs) override;
 
