@@ -36,21 +36,6 @@ class GameTree
     void build(); //initiates root
     void buildSubtree(); //recursively build tree
 
-    
-
-    std::shared_ptr<ActionNode> generateNode(
-      std::shared_ptr<ActionNode> node,
-      GameState state
-    );
-    std::shared_ptr<TerminalNode> generateNode(
-      std::shared_ptr<TerminalNode> node,
-      GameState state
-    );
-
-    int updateDepth(
-      std::shared_ptr<ActionNode> node,
-      int depth
-    );
 };
 
 #endif //KHUNSOLVER_INCLUDE_GAMETREE_H_
