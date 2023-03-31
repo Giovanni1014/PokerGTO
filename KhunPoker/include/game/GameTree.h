@@ -14,6 +14,8 @@
 #include <nodes/TerminalNode.h>
 #include <nodes/ShowdownNode.h>
 #include <nodes/GameTreeNode.h>
+#include <util/Action.h>
+
 
 
 
@@ -34,7 +36,9 @@ class GameTree
     GameTree(GameState gameState);
     
     void build(const GameState& gameState); //initiates root
-    
+
+    std::vector<Action> get_legal_actions(const GameState& state);
+
     shared_ptr<GameTreeNode> buildSubtree(); //recursively build tree
 };
 
