@@ -32,24 +32,11 @@ class GameTree
     GameState gameState;
 
     GameTree(GameState gameState);
+    
+    void build(); //initiates root
+    void buildSubtree(); //recursively build tree
 
-
-    /**
-     * @fn build()
-     * @brief the goal after build() is to have the entire GameTree initiated. All weights will be 1/3 for Kuhn
-    */
-    std::shared_ptr<GameTreeNode> build(
-      std::shared_ptr<ActionNode> node,
-      GameState state
-    );
-    std::shared_ptr<GameTreeNode> build(
-      std::shared_ptr<TerminalNode> node,
-      GameState state
-    );
-    std::shared_ptr<GameTreeNode> build(
-      std::shared_ptr<ShowdownNode> node,
-      GameState state
-    );
+    
 
     std::shared_ptr<ActionNode> generateNode(
       std::shared_ptr<ActionNode> node,
