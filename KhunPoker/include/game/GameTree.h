@@ -1,12 +1,8 @@
-/**
- * @file GameTree.h
- * @brief contains the GameTree class, see brief below.
- */
+#ifndef GAMETREE_H_
+#define GAMETREE_H_
 
-#ifndef KHUNSOLVER_INCLUDE_GAMETREE_H_
-#define KHUNSOLVER_INCLUDE_GAMETREE_H_
-
-#include <string>
+#include <memory>
+#include <vector>
 
 #include <game/GameState.h>
 #include <nodes/ActionNode.h>
@@ -16,30 +12,24 @@
 #include <nodes/GameTreeNode.h>
 #include <util/Action.h>
 
-
-
-
-
 /** 
  * @class GameTree
- * @brief the GameTree
  * 
  * See TexasSolver's implemenetation at:
  * https://github.com/bupticybee/TexasSolver/blob/console/include/GameTree.h
  */
-class GameTree
-{
-  public:
-    std::shared_ptr<GameTreeNode> root = nullptr;
-    GameState gameState;
+class GameTree {
+    public:
+        std::shared_ptr<GameTreeNode> root;
+        GameState gameState;
 
-    GameTree(GameState gameState);
-    
-    void build(GameState& gameState); //initiates root
+        GameTree(GameState gameState);
 
-    std::vector<Action> get_legal_actions(GameState& state);
+    private:
+        void build(GameState gameState);
+        void buildSubtree(std::shared_ptr<GameTreeNode> node); //perhaps do overloads based on type
 
-    shared_ptr<GameTreeNode> buildSubtree(); //recursively build tree
+        std::vector<Action> calculateLegalMoves(const GameState& gameState);
 };
 
-#endif //KHUNSOLVER_INCLUDE_GAMETREE_H_
+#endif //GAMETREE_H_
