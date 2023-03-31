@@ -35,9 +35,9 @@ class GameTree
 
     GameTree(GameState gameState);
     
-    void build(const GameState& gameState); //initiates root
+    void build(GameState& gameState); //initiates root
 
-    std::vector<Action> get_legal_actions(const GameState& state);
+    std::vector<Action> get_legal_actions(GameState& state);
 
     shared_ptr<GameTreeNode> buildSubtree(); //recursively build tree
 };
