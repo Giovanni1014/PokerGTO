@@ -24,16 +24,19 @@ class GameState
 
     Street street; //the current street (preflop, flop, turn, river)
 
-    float oop_mip; //the out of position player's money in pot
-    float ip_mip; //the in position player's money in pot
+    float oop_commit; //the out of position player's money in pot
+    float ip_commit; //the in position player's money in pot
     float effective_stack; //the smallest stack size between two players
 
     GameState(
       Deck deck,
       Street street,
-      float oop_mip,
-      float ip_mip,
-      float effective_stack
+      float oop_commit,
+      float ip_commit,
+      float initial_effective_stack,
+      float allin_threshold,
+      // float small_blind, (holdem only)
+      // float big_blind
     );
 };
 
