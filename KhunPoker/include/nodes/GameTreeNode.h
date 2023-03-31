@@ -17,21 +17,19 @@ class GameTreeNode {
         };
 
         GameTreeNode();
-        GameTreeNode(float pot, shared_ptr<GameTreeNode> parent);
+        GameTreeNode(shared_ptr<GameTreeNode> parent);
 
         // int depth{};
         // int subtree_size{};
 
         shared_ptr<GameTreeNode> getParent() const;
         // void setParent(shared_ptr<GameTreeNode> parent);
-        float getPot() const;
 
         virtual vector<float> utility(const Player player, const vector<float>& reach_probs); 
 
         virtual const GameTreeNodeType getType() = 0;
 
     private:
-        const float pot{};
         const shared_ptr<GameTreeNode> parent;
 };
 

@@ -9,8 +9,7 @@
  * @file Card.h
  * @brief Holds the card representation consisting of rank and a suit.
  */
-class Card
-{
+class Card {
 private:
     const char SUITS_AS_CHAR[4] = {'C', 'D', 'H', 'S'};
     const char RANKS_AS_CHAR[13] = {'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'};

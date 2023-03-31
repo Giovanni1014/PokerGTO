@@ -21,11 +21,13 @@ class ShowdownNode : public GameTreeNode {
         // vector<double> get_payoffs(ShowDownResult result, int winner);
         // double get_payoffs(ShowDownResult result, int winner, int player);
 
-        
+        float getPot() const;
 
         // private:
         //     vector<double> tie_payoffs;
         //     vector<vector<double>> player_payoffs;
+    private:
+        const float pot{};
 };
 
 #endif // SHOWDOWNNODE_H

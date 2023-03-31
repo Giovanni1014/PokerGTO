@@ -15,10 +15,12 @@ class TerminalNode : public GameTreeNode {
         // TerminalNode(vector<double> payoffs, int winner, double pot, shared_ptr<GameTreeNode> parent);
         // vector<double> get_payoffs();
 
-        const GameTreeNodeType getType() override;
+        GameTreeNodeType getType() override;
+        float getPot() const;
 
     private:
         // vector<double> payoffs;
+        const float pot{};
         const Player winner{}; 
 };
 
