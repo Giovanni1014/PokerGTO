@@ -1,7 +1,7 @@
 #ifndef ACTIONNODE_H
 #define ACTIONNODE_H
 
-#include <trainable/Trainable.h>
+#include "Trainable.h"
 #include "GameTreeNode.h"
 #include "GameAction.h"
 #include "Player.h"
