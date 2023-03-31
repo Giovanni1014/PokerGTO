@@ -34,6 +34,7 @@ struct GameState
     float ip_commit,
     float initial_effective_stack,
     float allin_threshold,
+    Player player_turn
     // float small_blind, (holdem only)
     // float big_blind
   );

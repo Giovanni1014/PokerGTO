@@ -3,8 +3,8 @@
 #define PLAYER_H
 
 enum Player { 
-    IP, 
-    OOP
+  IP, 
+  OOP
 };
 
 #endif
