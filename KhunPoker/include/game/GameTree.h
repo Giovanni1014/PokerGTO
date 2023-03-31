@@ -34,8 +34,7 @@ class GameTree
     GameTree(GameState gameState);
     
     void build(); //initiates root
-    void buildSubtree(); //recursively build tree
-
+    shared_ptr<GameTreeNode> buildSubtree(); //recursively build tree
 };
 
 #endif //KHUNSOLVER_INCLUDE_GAMETREE_H_
