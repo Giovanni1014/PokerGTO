@@ -6,7 +6,7 @@
 #ifndef KHUNSOLVER_INCLUDE_GAMESTATE_H_
 #define KHUNSOLVER_INCLUDE_GAMESTATE_H_
 
-#include <game/Deck.h>
+#include <util/Deck.h>
 #include <util/Street.h>
 
 
