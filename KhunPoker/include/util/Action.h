@@ -1,10 +1,5 @@
-/**
- * @file Action.h
- * @brief contains the Action enum, see brief below.
- */
-
-#ifndef KHUNSOLVER_INCLUDE_ACTION_H_
-#define KHUNSOLVER_INCLUDE_ACTION_H_
+#ifndef ACTION_H
+#define ACTION_H
 
 /** 
  * @enum Action
@@ -18,4 +13,4 @@ enum Action
   RIVER
 };
 
-#endif //KHUNSOLVER_INCLUDE_ACTION_H_
+#endif //ACTION_H

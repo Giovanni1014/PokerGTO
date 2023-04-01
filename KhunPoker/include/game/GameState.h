@@ -1,5 +1,5 @@
-#ifndef GAMESTATE_H_
-#define GAMESTATE_H_
+#ifndef GAMESTATE_H
+#define GAMESTATE_H
 
 #include <util/Deck.h>
 #include <util/Player.h>
@@ -31,4 +31,4 @@ struct GameState {
   );
 };
 
-#endif //GAMESTATE_H_
+#endif //GAMESTATE_H

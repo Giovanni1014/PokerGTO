@@ -3,8 +3,8 @@
  * @brief contains the Street enum, see brief below.
  */
 
-#ifndef KHUNSOLVER_INCLUDE_STREET_H_
-#define KHUNSOLVER_INCLUDE_STREET_H_
+#ifndef STREET_H
+#define STREET_H
 
 /** 
  * @enum Street
@@ -18,4 +18,4 @@ enum Street
   RIVER
 };
 
-#endif //KHUNSOLVER_INCLUDE_STREET_H_
+#endif //STREET_H

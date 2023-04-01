@@ -1,5 +1,5 @@
-#ifndef GAMETREE_H_
-#define GAMETREE_H_
+#ifndef GAMETREE_H
+#define GAMETREE_H
 
 #include <memory>
 #include <vector>
@@ -32,4 +32,4 @@ class GameTree {
         std::vector<Action> calculateLegalMoves(const GameState& gameState);
 };
 
-#endif //GAMETREE_H_
+#endif //GAMETREE_H
