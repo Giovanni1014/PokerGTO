@@ -7,10 +7,9 @@
  */
 enum Action
 {
-  PREFLOP,
-  FLOP,
-  TURN,
-  RIVER
+    FOLD,
+    CHECK,
+    BET
 };
 
 #endif //ACTION_H
