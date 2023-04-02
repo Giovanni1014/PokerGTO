@@ -21,7 +21,7 @@
 class GameTree {
     public:
         std::shared_ptr<GameTreeNode> root;
-        GameState gameState;
+        std::shared_ptr<GameState> gameState;
 
         GameTree(GameState gameState);
 
