@@ -1,10 +1,9 @@
 #ifndef ACTIONNODE_H
 #define ACTIONNODE_H
 
-#include <trainable/Trainable.h>
+#include "util/Trainable.h"
 #include "GameTreeNode.h"
 #include "GameAction.h"
-#include "Player.h"
 
 using std::vector;
 

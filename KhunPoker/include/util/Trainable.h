@@ -2,7 +2,7 @@
 #define TRAINABLE_H
 
 #include <vector>
-#include "include/nodes/ActionNode.h"
+#include "nodes/ActionNode.h"
 
 using namespace std;
 
@@ -20,9 +20,11 @@ class Trainable {
 
     public:
         Trainable();
-        
+        Trainable(shared_ptr<ActionNode> action_node);
         const vector<float> getAverageStrategy();
         const vector<float> getCurrentStrategy();
+        void setEv(const vector<float> &evs) = 0;
+        void copyStrategy(shared_ptr<Trainable> other_trainable) = 0;
         void updateRegrets(const vector<double> &regrets, int iteration_number, const vector<double> &reach_probabilities);
 };
 
