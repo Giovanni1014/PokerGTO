@@ -1,6 +1,11 @@
 #include "GameTree.h"
 #include "Action.h"
 
+GameTree::GameTree(std::shared_ptr<GameState> gameState)
+    : root(std::make_shared<Node>(nullptr, 0, Action::NONE, gameState))
+{}
+
+
 std::vector<Action> GameTree::calculateLegalMoves(const GameState& gameState) {
     std::vector<Action> legal_moves;
     Player current_player = gameState.player_turn;
