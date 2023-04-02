@@ -2,10 +2,13 @@
 #define TRAINABLE_H
 
 #include <vector>
+#include "include/nodes/ActionNode.h"
+
 using namespace std;
 
 class Trainable {
     private:
+        shared_ptr<ActionNode> action_node;
         int action_number;
         int card_number;
         vector<float> regrets_positive;
