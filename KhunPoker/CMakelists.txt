@@ -5,7 +5,7 @@ project(KhunPoker)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_FLAGS "-Wall")
 
-include_directories(./include ./include/util ./include/nodes ./include/solver)
+include_directories(./include ./include/util ./include/nodes ./include/solver ./include/game ./include/trainable)
 
 # Create the following aux source directories for each new directory.
 aux_source_directory(./src lib_src)
