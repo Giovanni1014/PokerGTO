@@ -6,20 +6,16 @@
 
 using std::vector;
 
-class TerminalNode : public GameTreeNode {
-    public:
-        TerminalNode();
-        TerminalNode(Player winner, float pot, shared_ptr<GameTreeNode> parent);
+class TerminalNode: public GameTreeNode {
+public:
+    TerminalNode();
+    TerminalNode(Player winner, float pot, shared_ptr<GameTreeNode> parent);
 
-        vector<float> utility(const Player player, const vector<float>& reach_probs) override;
-        // TerminalNode(vector<double> payoffs, int winner, double pot, shared_ptr<GameTreeNode> parent);
-        // vector<double> get_payoffs();
+    vector<float> utility(const Player player, const vector<float>& reach_probs) override;
+    const GameTreeNodeType getType() override;
 
-        const GameTreeNodeType getType() override;
-
-    private:
-        // vector<double> payoffs;
-        const Player winner{}; 
+private:
+    const Player winner{};
 };
 
 #endif // TERMINALNODE_H

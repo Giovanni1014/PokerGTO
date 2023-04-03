@@ -6,26 +6,26 @@
 #include "nodes/GameTreeNode.h"
 
 class GameAction {
-    public:
-        enum PokerAction {
-            INIT_BET,
-            RAISE,
-            CHECK,
-            FOLD,
-            CALL
-        };
+public:
+    enum PokerAction {
+        INIT_BET,
+        RAISE,
+        CHECK,
+        FOLD,
+        CALL
+    };
 
-        GameAction();
-        GameAction(PokerAction action, float amount);
+    GameAction();
+    GameAction(PokerAction action, float amount);
 
-        const PokerAction getAction() const;
-        const float getAmount() const;
+    const PokerAction getAction() const;
+    const float getAmount() const;
 
-        std::string toString() const;
+    std::string toString() const;
 
-    private:
-        const PokerAction action;
-        const float amount{};
+private:
+    const PokerAction action;
+    const float amount{};
 };
 
 #endif // GAMEACTION_H

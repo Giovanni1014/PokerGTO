@@ -15,7 +15,7 @@
 /** 
  * @class GameTree
  * 
- * See TexasSolver's implemenetation at:
+ * See TexasSolver's implementation at:
  * https://github.com/bupticybee/TexasSolver/blob/console/include/GameTree.h
  */
 class GameTree {

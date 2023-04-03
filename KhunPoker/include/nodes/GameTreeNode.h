@@ -8,31 +8,28 @@
 using std::shared_ptr, std::vector;
 
 class GameTreeNode {
-    public:
-        enum GameTreeNodeType {
-            ACTION,
-            SHOWDOWN,
-            TERMINAL,
-            // CHANCE ! needed for NLTH 
-        };
+public:
+    enum GameTreeNodeType {
+        ACTION,
+        SHOWDOWN,
+        TERMINAL,
+        // CHANCE ! needed for NLTH 
+    };
 
-        GameTreeNode();
-        GameTreeNode(float pot, shared_ptr<GameTreeNode> parent);
+    GameTreeNode();
+    GameTreeNode(float pot, shared_ptr<GameTreeNode> parent);
 
-        // int depth{};
-        // int subtree_size{};
 
-        shared_ptr<GameTreeNode> getParent() const;
-        // void setParent(shared_ptr<GameTreeNode> parent);
-        float getPot() const;
+    shared_ptr<GameTreeNode> getParent() const;
+    float getPot() const;
 
-        virtual vector<float> utility(const Player player, const vector<float>& reach_probs); 
+    virtual vector<float> utility(const Player player, const vector<float>& reach_probs);
 
-        virtual const GameTreeNodeType getType() = 0;
+    virtual const GameTreeNodeType getType() = 0;
 
-    private:
-        const float pot{};
-        const shared_ptr<GameTreeNode> parent;
+private:
+    const float pot{};
+    const shared_ptr<GameTreeNode> parent;
 };
 
 #endif // GAMETREENODE_H
