@@ -21,6 +21,7 @@ public:
     virtual void stop() = 0;
     virtual vector<vector<vector<float>>> get_strategy(shared_ptr<ActionNode> node, vector<Card> cards) = 0;
     virtual vector<vector<vector<float>>> get_evs(shared_ptr<ActionNode> node, vector<Card> cards) = 0;
+
     shared_ptr<GameTree> tree;
 };
 

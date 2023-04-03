@@ -6,8 +6,7 @@
 #ifndef CHANCENODE_H
 #define CHANCENODE_H
 
-class ChanceNode
-{
+class ChanceNode {
 };
 
 #endif //CHANCENODE_H

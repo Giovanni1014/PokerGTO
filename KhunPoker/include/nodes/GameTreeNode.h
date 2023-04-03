@@ -17,10 +17,11 @@ public:
     };
 
     GameTreeNode();
+
     GameTreeNode(float pot, shared_ptr<GameTreeNode> parent);
 
-
     shared_ptr<GameTreeNode> getParent() const;
+
     float getPot() const;
 
     virtual vector<float> utility(const Player player, const vector<float>& reach_probs);

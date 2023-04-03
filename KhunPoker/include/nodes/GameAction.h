@@ -16,9 +16,11 @@ public:
     };
 
     GameAction();
+
     GameAction(PokerAction action, float amount);
 
     const PokerAction getAction() const;
+
     const float getAmount() const;
 
     std::string toString() const;
