@@ -25,4 +25,4 @@ class Deck {
         std::vector<Card> getCards() const;
 };
 
-#endif
+#endif //DECK_H
