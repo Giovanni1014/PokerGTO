@@ -2,10 +2,6 @@
 
 ActionNode::ActionNode(vector<GameAction>& actions, vector<shared_ptr<GameTreeNode>>& childrens,
     Player player, shared_ptr<GameTreeNode> parent): GameTreeNode(parent), actions(actions), childrens(childrens), trainable(std::make_shared<Trainable>()), player(player) {
-    // this->actions = actions;
-    // this->childrens = childrens;
-    // this->trainable = make_shared<Trainable>(); // ! to be fixed
-    // this.player = player;
 }
 
 vector<float> ActionNode::utility(const Player player, const vector<float>& reach_probs) {

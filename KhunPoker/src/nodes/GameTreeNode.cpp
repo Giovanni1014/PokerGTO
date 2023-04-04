@@ -4,9 +4,7 @@ GameTreeNode::GameTreeNode() {}
 
 GameTreeNode::~GameTreeNode() {}
 
-GameTreeNode::GameTreeNode(shared_ptr<GameTreeNode> parent): parent(parent) {
-
-}
+GameTreeNode::GameTreeNode(shared_ptr<GameTreeNode> parent): parent(parent) {}
 
 vector<float> GameTreeNode::utility(const Player player, const vector<float>& reach_probs) {
     return vector<float>{};

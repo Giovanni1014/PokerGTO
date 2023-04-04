@@ -1,12 +1,8 @@
 #include "nodes/ShowdownNode.h"
 
-ShowdownNode::ShowdownNode() {
+ShowdownNode::ShowdownNode() {}
 
-}
-
-ShowdownNode::ShowdownNode(float pot, shared_ptr<GameTreeNode> parent): GameTreeNode(parent), pot(pot) {
-
-}
+ShowdownNode::ShowdownNode(float pot, shared_ptr<GameTreeNode> parent): GameTreeNode(parent), pot(pot) {}
 
 vector<float> ShowdownNode::utility(const Player player, const vector<float>& reach_probs) {
     // TODO implement

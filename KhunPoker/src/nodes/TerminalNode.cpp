@@ -1,12 +1,8 @@
 #include "TerminalNode.h"
 
-TerminalNode::TerminalNode() {
+TerminalNode::TerminalNode() {}
 
-}
-
-TerminalNode::TerminalNode(Player winner, float pot, shared_ptr<GameTreeNode> parent): GameTreeNode(parent), winner(winner), pot(pot) {
-
-}
+TerminalNode::TerminalNode(Player winner, float pot, shared_ptr<GameTreeNode> parent): GameTreeNode(parent), winner(winner), pot(pot) {}
 
 vector<float> TerminalNode::utility(const Player player, const vector<float>& reach_probs) {
     // ! don't need reach_probs here
