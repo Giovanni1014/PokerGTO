@@ -11,8 +11,8 @@
  */
 class Card {
 private:
-    const char SUITS_AS_CHAR[4] = {'C', 'D', 'H', 'S'};
-    const char RANKS_AS_CHAR[13] = {'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'};
+    const char SUITS_AS_CHAR[4] = { 'C', 'D', 'H', 'S' };
+    const char RANKS_AS_CHAR[13] = { 'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K' };
 
     char cardAsString[3];
     Rank rank;
@@ -25,7 +25,7 @@ public:
     Rank getRank() const;
     Suit getSuit() const;
 
-    void operator=(const Card &card);
+    void operator=(const Card& card);
 };
 
-#endif // CARD_H
+#endif //CARD_H

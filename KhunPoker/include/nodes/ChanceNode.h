@@ -3,11 +3,10 @@
  * @brief contains the ChanceNode class, see brief below.
  */
 
-#ifndef KHUNSOLVER_INCLUDE_CHANCENODE_H_
-#define KHUNSOLVER_INCLUDE_CHANCENODE_H_
+#ifndef CHANCENODE_H
+#define CHANCENODE_H
 
-class ChanceNode
-{
+class ChanceNode {
 };
 
-#endif //KHUNSOLVER_INCLUDE_CHANCENODE_H_
+#endif //CHANCENODE_H
