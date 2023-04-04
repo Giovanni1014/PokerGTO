@@ -1,32 +1,38 @@
-#include "nodes/ActionNode.h"
+#include "ActionNode.h"
 
-ActionNode::ActionNode(vector<GameAction> actions, vector<shared_ptr<GameTreeNode>> childrens, Player player, shared_ptr<GameTreeNode> parent) : GameTreeNode(parent) {
-    this.actions = actions;
-    this.childrens = childrens;
-    this.trainable = make_shared<Trainable>(); // ! to be fixed
-    this.player = player;
+ActionNode::ActionNode(vector<GameAction>& actions, vector<shared_ptr<GameTreeNode>>& childrens,
+    Player player, shared_ptr<GameTreeNode> parent): GameTreeNode(parent), actions(actions), childrens(childrens), trainable(std::make_shared<Trainable>()), player(player) {
+    // this->actions = actions;
+    // this->childrens = childrens;
+    // this->trainable = make_shared<Trainable>(); // ! to be fixed
+    // this.player = player;
 }
 
-vector<float> ActionNode::utility(const Player player, const vector<float>& reach_probs) override {
+vector<float> ActionNode::utility(const Player player, const vector<float>& reach_probs) {
     // TODO implement
+    return vector<float>{};
 }
 
-vector<GameAction>& ActionNode::getActions() const {
-    return this.actions;
+const vector<GameAction>& ActionNode::getActions() const {
+    return this->actions;
 }
 
-vector<shared_ptr<GameTreeNode>>& ActionNode::getChildrens() const {
-    return this.childrens;
+const vector<shared_ptr<GameTreeNode>>& ActionNode::getChildrens() const {
+    return this->childrens;
 }
 
-shared_ptr<Trainable> ActionNode::getTrainable() const {
-    return this.trainable;
+void ActionNode::setChildrens(vector<shared_ptr<GameTreeNode>>& childrens) {
+    this->childrens = childrens;
+}
+
+const shared_ptr<Trainable> ActionNode::getTrainable() const {
+    return this->trainable;
 }
 
 const Player ActionNode::getPlayer() const {
-    return this.player;
+    return this->player;
 }
 
-GameTreeNodeType ActionNode::getType() override {
+const ActionNode::GameTreeNodeType ActionNode::getType() {
     return ACTION;
 }

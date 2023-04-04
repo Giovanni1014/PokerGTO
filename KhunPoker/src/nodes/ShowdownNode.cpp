@@ -4,20 +4,20 @@ ShowdownNode::ShowdownNode() {
 
 }
 
-ShowdownNode::ShowdownNode(float pot, shared_ptr<GameTreeNode> parent) {
-    this.pot = pot;
-    this.parent = parent;
+ShowdownNode::ShowdownNode(float pot, shared_ptr<GameTreeNode> parent): GameTreeNode(parent), pot(pot) {
+
 }
 
-vector<float> ShowdownNode::utility(const Player player, const vector<float>& reach_probs) override {
+vector<float> ShowdownNode::utility(const Player player, const vector<float>& reach_probs) {
     // TODO implement
-    this.trainable...
+    //this->trainable...
+    return vector<float>{};
 }
 
-GameTreeNodeType ShowdownNode::getType() override {
+const GameTreeNode::GameTreeNodeType ShowdownNode::getType() {
     return SHOWDOWN;
 }
 
-float ShowdownNode::getPot() const {
-    return this.pot;
+const float ShowdownNode::getPot() const {
+    return this->pot;
 }

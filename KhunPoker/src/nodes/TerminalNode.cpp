@@ -1,28 +1,28 @@
-#include "nodes/TerminalNode.h"
+#include "TerminalNode.h"
 
 TerminalNode::TerminalNode() {
 
 }
 
-TerminalNode::TerminalNode(Player winner, float pot, shared_ptr<GameTreeNode> parent) {
-    this.winner = winner;
-    this.pot = pot;
-    this.parent = parent;
+TerminalNode::TerminalNode(Player winner, float pot, shared_ptr<GameTreeNode> parent): GameTreeNode(parent), winner(winner), pot(pot) {
+
 }
 
-vector<float> TerminalNode::utility(const Player player, const vector<float>& reach_probs) override {
+vector<float> TerminalNode::utility(const Player player, const vector<float>& reach_probs) {
     // ! don't need reach_probs here
-    if (player == this.winner) {
-        return this.pot;
-    } else {
-        return -this.pot;
+    // * edit: we need the size of it
+    if (player == this->winner) {
+        return vector<float>(reach_probs.size(), this->pot);
+    }
+    else {
+        return vector<float>(reach_probs.size(), -this->pot);
     }
 }
 
-GameTreeNodeType TerminalNode::getType() override {
+const GameTreeNode::GameTreeNodeType TerminalNode::getType() {
     return TERMINAL;
 }
 
-float TerminalNode::getPot() const {
-    return this.pot;
+const float TerminalNode::getPot() const {
+    return this->pot;
 }

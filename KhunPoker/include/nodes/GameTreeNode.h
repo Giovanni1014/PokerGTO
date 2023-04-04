@@ -18,7 +18,9 @@ public:
 
     GameTreeNode();
 
-    GameTreeNode(float pot, shared_ptr<GameTreeNode> parent);
+    virtual ~GameTreeNode();
+
+    GameTreeNode(shared_ptr<GameTreeNode> parent);
 
     shared_ptr<GameTreeNode> getParent() const;
 
