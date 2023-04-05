@@ -9,6 +9,8 @@
 #include "TerminalNode.h"
 #include "Player.h"
 
+#include "GameTree.h"
+
 using std::vector, std::shared_ptr, std::make_shared;
 
 /**
@@ -91,7 +93,15 @@ int main() {
     }
     std::cout << "\n----------------\n";
 
+    vector<float> betSizes = { 30, 50, 100 };
+    GameSetting gameSetting(5, betSizes, 100, 0, true);
+    GameTree gameTree = GameTree(gameSetting);
 
+    GameState gameState(3, 5, 0.8, Player::OOP, 1);
+    vector<int> ret = gameTree.generateBetAmounts(gameState);
+    for (auto bet : ret) {
+        std::cout << bet << " ";
+    } std::cout << "\n";
 
     return 0;
 }
