@@ -30,7 +30,10 @@ vector<GameAction> GameTree::generateLegalActions(const GameState& gameState) {
     // Betting is always a legal move, (betting == calling)
 
     // if (allin)
-    // legalActions.push_back(Action::BET);
+    vector<int> betAmounts = generateBetAmounts(gameState);
+    for (int betAmount : betAmounts) {
+        legalActions.push_back(GameAction(GameAction::RAISE, betAmount));
+    }
 
     return legalActions;
 }
@@ -40,7 +43,7 @@ std::shared_ptr<vector<GameState>> GameTree::generateChildrenStates(const GameSt
 
     vector<GameState> childrenStates;
     for (GameAction action : actions) {
-
+        // ! not done
     }
 }
 
@@ -54,8 +57,7 @@ std::vector<int> GameTree::generateBetAmounts(const GameState& gameState) {
     if (gameState.bet_count < this->gameSetting.betCntLimit) {
         for (float betSize : this->gameSetting.bet_sizes) {
             int betAmount = std::round(betSize * called_pot_size / 100) + call_amount;
-
-            // * need other checks?
+            // ! need to check if the bet is greater than min bet
             if (betAmount < this->gameSetting.initial_stack - player_commit) {
                 betAmounts.push_back(betAmount);
             } else if (betAmount == this->gameSetting.initial_stack - player_commit) {

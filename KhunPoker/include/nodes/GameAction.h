@@ -6,7 +6,7 @@
 #include "nodes/GameTreeNode.h"
 
 struct GameAction {
-    enum PokerAction {
+    enum ActionType {
         INIT_BET,
         RAISE,
         CHECK,
@@ -14,10 +14,10 @@ struct GameAction {
         CALL
     };
 
-    const PokerAction action;
+    const ActionType type;
     const float amount;
 
-    GameAction(PokerAction action, float amount): action(action), amount(amount) {}
+    GameAction(ActionType type, float amount) : type(type), amount(amount) {}
 };
 
 #endif // GAMEACTION_H
