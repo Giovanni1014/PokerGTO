@@ -30,7 +30,7 @@ vector<GameAction> GameTree::generateLegalActions(const GameState& gameState) {
     // Betting is always a legal move, (betting == calling)
 
     // if (allin)
-    vector<int> betAmounts = generateBetAmounts(gameState);
+    vector<int> betAmounts = generateBetAmounts(gameState, current_player_commit, other_player_commit);
     for (int betAmount : betAmounts) {
         legalActions.push_back(GameAction(GameAction::RAISE, betAmount));
     }
@@ -47,20 +47,18 @@ std::shared_ptr<vector<GameState>> GameTree::generateChildrenStates(const GameSt
     }
 }
 
-std::vector<int> GameTree::generateBetAmounts(const GameState& gameState) {
+std::vector<int> GameTree::generateBetAmounts(const GameState& gameState, float current_player_commit, float other_player_commit) {
     vector<int> betAmounts;
-    int player_commit = gameState.player_turn == Player::IP ? gameState.ip_commit : gameState.oop_commit;
-    int oppo_commit = gameState.player_turn != Player::IP ? gameState.ip_commit : gameState.oop_commit;
-    int called_pot_size = 2 * oppo_commit;
-    int call_amount = oppo_commit - player_commit;
+    int called_pot_size = 2 * other_player_commit;
+    int call_amount = other_player_commit - current_player_commit;
     bool have_allined = false;
     if (gameState.bet_count < this->gameSetting.betCntLimit) {
         for (float betSize : this->gameSetting.bet_sizes) {
             int betAmount = std::round(betSize * called_pot_size / 100) + call_amount;
             // ! need to check if the bet is greater than min bet
-            if (betAmount < this->gameSetting.initial_stack - player_commit) {
+            if (betAmount < this->gameSetting.initial_stack - current_player_commit) {
                 betAmounts.push_back(betAmount);
-            } else if (betAmount == this->gameSetting.initial_stack - player_commit) {
+            } else if (betAmount == this->gameSetting.initial_stack - current_player_commit) {
                 betAmounts.push_back(betAmount);
                 have_allined = true;
             }

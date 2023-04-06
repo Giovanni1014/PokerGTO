@@ -36,7 +36,7 @@ private:
     std::shared_ptr<std::vector<GameState>> generateChildrenStates(const GameState& gameState,
         vector<GameAction>& actions);
 public:
-    std::vector<int> generateBetAmounts(const GameState& gameState);
+    std::vector<int> generateBetAmounts(const GameState& gameState, float current_player_commit, float other_player_commit);
 };
 
 #endif //GAMETREE_H
