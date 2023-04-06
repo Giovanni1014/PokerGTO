@@ -109,9 +109,17 @@ int main() {
     vector<GameAction> legalActions = gameTree.generateLegalActions(gameState);
     for (auto action : legalActions) {
         std::cout << action.type << " " << action.amount << "\n";
-    } std::cout << "\n";
+    }
 
-    std::cout << "\n----------------\n";
+    std::cout << "----------------\n";
+
+    std::shared_ptr<vector<GameState>> childrenStates = gameTree.generateChildrenStates(gameState, legalActions);
+
+    for (const auto& state : *childrenStates) {
+        std::cout << state.street << " " << state.oop_commit << " " << state.ip_commit
+            << " " << state.player_turn << " " << state.bet_count << std::endl;
+
+    }
 
     return 0;
 }
