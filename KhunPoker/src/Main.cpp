@@ -8,6 +8,7 @@
 #include "ShowdownNode.h"
 #include "TerminalNode.h"
 #include "Player.h"
+#include "Street.h"
 
 #include "GameTree.h"
 
@@ -94,14 +95,23 @@ int main() {
     std::cout << "\n----------------\n";
 
     vector<float> betSizes = { 30, 50, 100 };
-    GameSetting gameSetting(5, betSizes, 100, 0, true);
+    GameSetting gameSetting(5, betSizes, 100, 0, 0.8, true);
     GameTree gameTree = GameTree(gameSetting);
 
-    GameState gameState(3, 5, 0.8, Player::OOP, 1);
+    GameState gameState(Street::INGAME, 3, 5, Player::OOP, 1);
     vector<int> ret = gameTree.generateBetAmounts(gameState);
     for (auto bet : ret) {
         std::cout << bet << " ";
     } std::cout << "\n";
+
+    std::cout << "\n----------------\n";
+
+    vector<GameAction> legalActions = gameTree.generateLegalActions(gameState);
+    for (auto action : legalActions) {
+        std::cout << action.type << " " << action.amount << "\n";
+    } std::cout << "\n";
+
+    std::cout << "\n----------------\n";
 
     return 0;
 }

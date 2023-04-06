@@ -2,6 +2,7 @@
 #include "GameAction.h"
 
 #include "Player.h"
+#include "Street.h"
 
 #include <algorithm>
 #include <cmath>
@@ -25,6 +26,7 @@ vector<GameAction> GameTree::generateLegalActions(const GameState& gameState) {
         legalActions.push_back(GameAction(GameAction::CHECK, -1.0));
     } else {
         legalActions.push_back(GameAction(GameAction::FOLD, -1.0));
+        legalActions.push_back(GameAction(GameAction::CALL, other_player_commit - current_player_commit));
     }
 
     // Betting is always a legal move, (betting == calling)
@@ -42,9 +44,64 @@ std::shared_ptr<vector<GameState>> GameTree::generateChildrenStates(const GameSt
     vector<GameAction>& actions) {
 
     vector<GameState> childrenStates;
+
     for (GameAction action : actions) {
-        // ! not done
+        switch (action.type) {
+            case GameAction::RAISE:
+                int new_oop_commit = gameState.oop_commit;
+                int new_ip_commmit = gameState.ip_commit;
+                if (gameState.player_turn == Player::OOP) {
+                    new_oop_commit += action.amount;
+                } else {
+                    new_ip_commmit += action.amount;
+                }
+                childrenStates.push_back(GameState(
+                    Street::INGAME,
+                    new_oop_commit,
+                    new_ip_commmit,
+                    1 - gameState.player_turn,
+                    gameState.bet_count + 1
+                ));
+                break;
+            case GameAction::CHECK:
+                Street street = gameState.player_turn == Player::OOP ? Street::INGAME : Street::TERMINAL;
+                childrenStates.push_back(GameState(
+                    street,
+                    gameState.oop_commit,
+                    gameState.ip_commmit,
+                    1 - gameState.player_turn,
+                    gameState.bet_count
+                ));
+                break;
+            case GameAction::FOLD:
+                childrenStates.push_back(GameState(
+                    Street::TERMINAL,
+                    gameState.oop_commit,
+                    gameState.ip_commmit,
+                    1 - gameState.player_turn,
+                    gameState.bet_count
+                ));
+                break;
+            case GameAction::CALL:
+                int new_oop_commit = gameState.oop_commit;
+                int new_ip_commmit = gameState.ip_commit;
+                if (gameState.player_turn == Player::OOP) {
+                    new_oop_commit += action.amount;
+                } else {
+                    new_ip_commmit += action.amount;
+                }
+                childrenStates.push_back(GameState(
+                    Street::TERMINAL,
+                    new_oop_commit,
+                    new_ip_commmit,
+                    1 - gameState.player_turn,
+                    0
+                ));
+                break;
+        }
     }
+    return std::make_shared<vector<GameState>>(std::move(childrenStates));
+
 }
 
 std::vector<int> GameTree::generateBetAmounts(const GameState& gameState) {
@@ -58,11 +115,13 @@ std::vector<int> GameTree::generateBetAmounts(const GameState& gameState) {
         for (float betSize : this->gameSetting.bet_sizes) {
             int betAmount = std::round(betSize * called_pot_size / 100) + call_amount;
             // ! need to check if the bet is greater than min bet
-            if (betAmount < this->gameSetting.initial_stack - player_commit) {
-                betAmounts.push_back(betAmount);
-            } else if (betAmount == this->gameSetting.initial_stack - player_commit) {
-                betAmounts.push_back(betAmount);
-                have_allined = true;
+            if (betAmount > call_amount) { // * is not a call
+                if (betAmount < this->gameSetting.initial_stack - player_commit) {
+                    betAmounts.push_back(betAmount);
+                } else if (betAmount == this->gameSetting.initial_stack - player_commit) {
+                    betAmounts.push_back(betAmount);
+                    have_allined = true;
+                }
             }
         }
     }

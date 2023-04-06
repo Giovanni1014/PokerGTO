@@ -32,10 +32,11 @@ private:
     void build(GameState gameState);
     void buildSubtree(std::shared_ptr<GameTreeNode> node); //perhaps do overloads based on type
 
+public: // ! public for test purpose, should be private
     std::vector<GameAction> generateLegalActions(const GameState& gameState);
     std::shared_ptr<std::vector<GameState>> generateChildrenStates(const GameState& gameState,
         vector<GameAction>& actions);
-public:
+
     std::vector<int> generateBetAmounts(const GameState& gameState);
 };
 
