@@ -2,8 +2,8 @@
 
 #define PLAYER_H
 
-enum Player { 
-  IP, 
+enum Player {
+  IP,
   OOP
 };
 

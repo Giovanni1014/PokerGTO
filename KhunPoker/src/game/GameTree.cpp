@@ -46,58 +46,53 @@ std::shared_ptr<vector<GameState>> GameTree::generateChildrenStates(const GameSt
     vector<GameState> childrenStates;
 
     for (GameAction action : actions) {
-        switch (action.type) {
-            case GameAction::RAISE:
-                int new_oop_commit = gameState.oop_commit;
-                int new_ip_commmit = gameState.ip_commit;
-                if (gameState.player_turn == Player::OOP) {
-                    new_oop_commit += action.amount;
-                } else {
-                    new_ip_commmit += action.amount;
-                }
-                childrenStates.push_back(GameState(
-                    Street::INGAME,
-                    new_oop_commit,
-                    new_ip_commmit,
-                    1 - gameState.player_turn,
-                    gameState.bet_count + 1
-                ));
-                break;
-            case GameAction::CHECK:
-                Street street = gameState.player_turn == Player::OOP ? Street::INGAME : Street::TERMINAL;
-                childrenStates.push_back(GameState(
-                    street,
-                    gameState.oop_commit,
-                    gameState.ip_commmit,
-                    1 - gameState.player_turn,
-                    gameState.bet_count
-                ));
-                break;
-            case GameAction::FOLD:
-                childrenStates.push_back(GameState(
-                    Street::TERMINAL,
-                    gameState.oop_commit,
-                    gameState.ip_commmit,
-                    1 - gameState.player_turn,
-                    gameState.bet_count
-                ));
-                break;
-            case GameAction::CALL:
-                int new_oop_commit = gameState.oop_commit;
-                int new_ip_commmit = gameState.ip_commit;
-                if (gameState.player_turn == Player::OOP) {
-                    new_oop_commit += action.amount;
-                } else {
-                    new_ip_commmit += action.amount;
-                }
-                childrenStates.push_back(GameState(
-                    Street::TERMINAL,
-                    new_oop_commit,
-                    new_ip_commmit,
-                    1 - gameState.player_turn,
-                    0
-                ));
-                break;
+        if (action.type == GameAction::RAISE) {
+            int new_oop_commit = gameState.oop_commit;
+            int new_ip_commit = gameState.ip_commit;
+            if (gameState.player_turn == Player::OOP) {
+                new_oop_commit += action.amount;
+            } else {
+                new_ip_commit += action.amount;
+            }
+            childrenStates.push_back(GameState(
+                Street::INGAME,
+                new_oop_commit,
+                new_ip_commit,
+                (Player)(1 - gameState.player_turn),
+                gameState.bet_count + 1
+            ));
+        } else if (action.type == GameAction::CHECK) {
+            Street street = gameState.player_turn == Player::OOP ? Street::INGAME : Street::TERMINAL;
+            childrenStates.push_back(GameState(
+                street,
+                gameState.oop_commit,
+                gameState.ip_commit,
+                (Player)(1 - gameState.player_turn),
+                gameState.bet_count
+            ));
+        } else if (action.type == GameAction::FOLD) {
+            childrenStates.push_back(GameState(
+                Street::TERMINAL,
+                gameState.oop_commit,
+                gameState.ip_commit,
+                (Player)(1 - gameState.player_turn),
+                gameState.bet_count
+            ));
+        } else if (action.type == GameAction::CALL) {
+            int new_oop_commit = gameState.oop_commit;
+            int new_ip_commit = gameState.ip_commit;
+            if (gameState.player_turn == Player::OOP) {
+                new_oop_commit += action.amount;
+            } else {
+                new_ip_commit += action.amount;
+            }
+            childrenStates.push_back(GameState(
+                Street::TERMINAL,
+                new_oop_commit,
+                new_ip_commit,
+                (Player)(1 - gameState.player_turn),
+                0
+            ));
         }
     }
     return std::make_shared<vector<GameState>>(std::move(childrenStates));

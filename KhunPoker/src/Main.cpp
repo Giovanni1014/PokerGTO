@@ -109,9 +109,9 @@ int main() {
     vector<GameAction> legalActions = gameTree.generateLegalActions(gameState);
     for (auto action : legalActions) {
         std::cout << action.type << " " << action.amount << "\n";
-    } std::cout << "\n";
+    }
 
-    std::cout << "\n----------------\n";
+    std::cout << "----------------\n";
 
     return 0;
 }
