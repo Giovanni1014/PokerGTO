@@ -5,19 +5,19 @@ Trainable::Trainable() {}
 Trainable::Trainable(shared_ptr<ActionNode> action_node)
 {
     this->action_node = action_node;
-    this->action_number = action_node.
+    this->action_number = action_node->getChildrens().size();
 }
 
-const vector<float> CfrPlusTrainable::getAverageStrategy()
+const vector<float> Trainable::getAverageStrategy()
 {
-    return this->getcurrentStrategy();
+    return this->getCurrentStrategy();
 }
 
-const vector<float> CfrPlusTrainable::getcurrentStrategy()
+const vector<float> Trainable::getCurrentStrategy()
 {
-    if (this->r_plus_sum.empty())
+    if (this->regrets_positive_sum.empty())
     {
-        fill(retval.begin(), retval.end(), 1.0 / this->action_number);
+        fill(return_value.begin(), return_value.end(), 1.0 / this->action_number);
     }
     else
     {
@@ -26,31 +26,31 @@ const vector<float> CfrPlusTrainable::getcurrentStrategy()
             for (int private_id = 0; private_id < this->card_number; private_id++)
             {
                 int index = action_id * this->card_number + private_id;
-                if (this->r_plus_sum[private_id] != 0)
+                if (this->regrets_positive_sum[private_id] != 0)
                 {
-                    retval[index] = this->r_plus[index] / this->r_plus_sum[private_id];
+                    return_value[index] = this->regrets_positive[index] / this->regrets_positive_sum[private_id];
                 }
                 else
                 {
-                    retval[index] = 1.0 / this->action_number;
+                    return_value[index] = 1.0 / this->action_number;
                 }
-                if (this->r_plus[index] != this->r_plus[index])
-                    throw runtime_error("nan found");
+                if (this->regrets_positive[index] != this->regrets_positive[index])
+                    throw std::runtime_error("nan found");
             }
         }
     }
-    return retval;
+    return return_value;
 }
 
-void CfrPlusTrainable::updateRegrets(const vector<float> &regrets, int iteration_number, const vector<float> &reach_probs)
+void Trainable::updateRegrets(const vector<double> &regrets, int iteration_number, const vector<double> &reach_probabilities)
 {
     this->regrets = regrets;
     if (regrets.size() != this->action_number * this->card_number)
-        throw runtime_error("length not match");
-
-    // Arrays.fill(this.r_plus_sum,0);
-    fill(r_plus_sum.begin(), r_plus_sum.end(), 0);
-    fill(cum_r_plus_sum.begin(), cum_r_plus_sum.end(), 0);
+    {
+        throw std::runtime_error("length not match");
+    }
+    fill(regrets_positive_sum.begin(), regrets_positive_sum.end(), 0);
+    fill(cumulative_regrets_positive_sum.begin(), cumulative_regrets_positive_sum.end(), 0);
     for (int action_id = 0; action_id < action_number; action_id++)
     {
         for (int private_id = 0; private_id < this->card_number; private_id++)
@@ -58,14 +58,11 @@ void CfrPlusTrainable::updateRegrets(const vector<float> &regrets, int iteration
             int index = action_id * this->card_number + private_id;
             float one_reg = regrets[index];
 
-            // 更新 R+
-            this->r_plus[index] = max((float)0.0, one_reg + this->r_plus[index]);
-            this->r_plus_sum[private_id] += this->r_plus[index];
+            this->regrets_positive[index] = std::max((float)0.0, one_reg + this->regrets_positive[index]);
+            this->regrets_positive[private_id] += this->regrets_positive[index];
 
-            // 更新累计策略
-            this->cum_r_plus[index] += this->r_plus[index] * iteration_number;
-            this->cum_r_plus_sum[private_id] += this->cum_r_plus[index];
+            this->cumulative_regrets_positive[index] += this->regrets_positive[index] * iteration_number;
+            this->cumulative_regrets_positive_sum[private_id] += this->cumulative_regrets_positive[index];
         }
     }
 }
-

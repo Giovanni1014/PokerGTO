@@ -4,8 +4,6 @@
 #include <vector>
 #include "nodes/ActionNode.h"
 
-using namespace std;
-
 class Trainable {
     private:
         shared_ptr<ActionNode> action_node;
@@ -24,8 +22,8 @@ class Trainable {
         Trainable(shared_ptr<ActionNode> action_node);
         const vector<float> getAverageStrategy();
         const vector<float> getCurrentStrategy();
-        void setEv(const vector<float> &evs) = 0; // only used for discountedCFR
-        void copyStrategy(shared_ptr<Trainable> other_trainable) = 0;
+        virtual void setEv(const vector<float> &evs) = 0; // only used for discountedCFR
+        virtual void copyStrategy(shared_ptr<Trainable> other_trainable) = 0;
         void updateRegrets(const vector<double> &regrets, int iteration_number, const vector<double> &reach_probabilities);
 };
 
