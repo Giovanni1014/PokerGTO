@@ -20,6 +20,7 @@ class Card {
 
     public:
         Card(Rank rank, Suit suit);
+        Card(std::string card);
 
         std::string toString() const;
         Rank getRank() const;
