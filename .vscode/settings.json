@@ -60,6 +60,8 @@
     "algorithm": "cpp",
     "concepts": "cpp",
     "codecvt": "cpp",
-    "iostream": "cpp"
-}
+    "iostream": "cpp",
+    "utility": "cpp",
+    "version": "cpp"
+  }
 }
