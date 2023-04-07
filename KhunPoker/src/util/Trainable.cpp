@@ -1,4 +1,4 @@
-#include "util/Trainable.h"
+#include "Trainable.h"
 
 Trainable::Trainable() {}
 
@@ -6,6 +6,15 @@ Trainable::Trainable(shared_ptr<ActionNode> action_node)
 {
     this->action_node = action_node;
     this->action_number = action_node->getChildrens().size();
+    this->card_number = 0;
+
+    this->regrets_positive = vector<float> (this->action_number * 1);
+    this->regrets_positive_sum = vector<float> (this->card_number);
+
+    this->cumulative_regrets_positive = vector<float>(this->action_number * 1);
+    this->cumulative_regrets_positive_sum = vector<float>(this->card_number);
+
+    this->return_value = vector<float>(this->action_number * 1);
 }
 
 const vector<float> Trainable::getAverageStrategy()
@@ -42,7 +51,7 @@ const vector<float> Trainable::getCurrentStrategy()
     return return_value;
 }
 
-void Trainable::updateRegrets(const vector<double> &regrets, int iteration_number, const vector<double> &reach_probabilities)
+void Trainable::updateRegrets(const vector<float> &regrets, int iteration_number, const vector<double> &reach_probabilities)
 {
     this->regrets = regrets;
     if (regrets.size() != this->action_number * this->card_number)

@@ -2,7 +2,7 @@
 #define TRAINABLE_H
 
 #include <vector>
-#include "nodes/ActionNode.h"
+#include "ActionNode.h"
 
 class Trainable {
     private:
@@ -24,7 +24,7 @@ class Trainable {
         const vector<float> getCurrentStrategy();
         virtual void setEv(const vector<float> &evs) = 0; // only used for discountedCFR
         virtual void copyStrategy(shared_ptr<Trainable> other_trainable) = 0;
-        void updateRegrets(const vector<double> &regrets, int iteration_number, const vector<double> &reach_probabilities);
+        void updateRegrets(const vector<float> &regrets, int iteration_number, const vector<double> &reach_probabilities);
 };
 
 #endif
