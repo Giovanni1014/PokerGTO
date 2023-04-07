@@ -24,16 +24,23 @@ Comparer::Comparer() : Comparer("khun_list.txt") {}
 Comparer::Comparer(std::string filename) {
     this->khunMap = std::unordered_map<PrivateCard, int, PrivateCardHasher>();
 
+    // file doesnt work right now, so hardcoded
+    std::vector<string> cards = {"JS", "QS", "KS"};
+    std::vector<int> values = {0, 1, 2};
 
     std::ifstream file(filename);
     for (int i = 0; i < 3; i++) {
         string card;
         int value;
         file >> card >> value;
-        std::cout << card << " | " << value << "\n";
-        Card card1(card);
+        // std::cout << card << " | " << value << "\n"; 
+        // Card card1(card);
+        // PrivateCard privateCard(card1);
+        // khunMap[privateCard] = value;
+
+        Card card1(cards[i]);
         PrivateCard privateCard(card1);
-        khunMap[privateCard] = value;
+        khunMap[privateCard] = values[i];
     }
 
 }

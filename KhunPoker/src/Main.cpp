@@ -14,55 +14,55 @@
  * @return int 
  */
 int main() {
-    // std::ios_base::sync_with_stdio(false);
+    std::ios_base::sync_with_stdio(false);
 
-    // Deck d(DeckType::STANDARD);
-    // int count = 0;
-    // for (const Card& c : d.getCards()) {
-    //     std::cout << c.toString() << " ";
-    //     count++;
-    // }
-    // std::cout << "\n";
-    // std::cout << count << "\n";
+    Deck d(DeckType::STANDARD);
+    int count = 0;
+    for (const Card& c : d.getCards()) {
+        std::cout << c.toString() << " ";
+        count++;
+    }
+    std::cout << "\n";
+    std::cout << count << "\n";
 
-    // d.shuffle();
-    // count = 0;
+    d.shuffle();
+    count = 0;
 
-    // for (const Card& c : d.getCards()) {
-    //     std::cout << c.toString() << " ";
-    //     count++;
-    // }
-    // std::cout << "\n";
+    for (const Card& c : d.getCards()) {
+        std::cout << c.toString() << " ";
+        count++;
+    }
+    std::cout << "\n";
 
-    // for (int i = 0; i < 52; i++) {
-    //     std::cout << d.deal().toString() << " ";
-    // }
-    // std::cout << "\n";
-    // std::cout << count << "\n";
+    for (int i = 0; i < 52; i++) {
+        std::cout << d.deal().toString() << " ";
+    }
+    std::cout << "\n";
+    std::cout << count << "\n";
 
-    // for (int i = 0; i < 52; i++) {
-    //     std::cout << d.deal().toString() << " ";
-    // }
-    // std::cout << "\n";
+    for (int i = 0; i < 52; i++) {
+        std::cout << d.deal().toString() << " ";
+    }
+    std::cout << "\n";
 
-    // Deck kd(DeckType::KHUN);
-    // count = 0;
-    // for (const Card& c : kd.getCards()) {
-    //     std::cout << c.toString() << " ";
-    //     count++;
-    // }
-    // std::cout << "\n";
-    // std::cout << count << "\n";
+    Deck kd(DeckType::KHUN);
+    count = 0;
+    for (const Card& c : kd.getCards()) {
+        std::cout << c.toString() << " ";
+        count++;
+    }
+    std::cout << "\n";
+    std::cout << count << "\n";
 
-    // kd.shuffle();
-    // count = 0;
+    kd.shuffle();
+    count = 0;
 
-    // for (const Card& c : kd.getCards()) {
-    //     std::cout << c.toString() << " ";
-    //     count++;
-    // }
-    // std::cout << "\n";
-    // std::cout << count << "\n";
+    for (const Card& c : kd.getCards()) {
+        std::cout << c.toString() << " ";
+        count++;
+    }
+    std::cout << "\n";
+    std::cout << count << "\n";
 
     // test comparer
     Comparer comparer;
@@ -78,19 +78,16 @@ int main() {
     privateCards2.push_back(PrivateCard(Card(Rank::QUEEN, Suit::SPADES)));
     privateCards2.push_back(PrivateCard(Card(Rank::KING, Suit::SPADES)));
 
-
     for (int i = 0; i < 3; i++) {
         // should print 2 2 2 (for ties)
         std::cout << comparer.compare(privateCards1[i], privateCards2[i]);
     }
-
     std::cout << "\n";
-
-    
     for (int i = 0; i < 3; i++) {
         // should print 0 0 2 (for win, win, tie)
         std::cout << comparer.compare(privateCards1[2], privateCards1[i]) ;
     }
+    std::cout << "\n";
 
 
 
