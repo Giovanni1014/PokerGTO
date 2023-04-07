@@ -12,8 +12,11 @@ class PrivateCard {
     public:
         PrivateCard(Card card);
         const Card getCard() const;
+        bool operator==(const PrivateCard& other) const;
     private:
         const Card card; 
+
+    
 };
 
 #endif //PRIVATE_CARD_H

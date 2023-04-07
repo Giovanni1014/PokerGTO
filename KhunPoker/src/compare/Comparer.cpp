@@ -10,32 +10,30 @@
 #include "Suit.h"
 #include "Rank.h"
 
+
 using std::string;
 
 // contents of file
-// Js,0
-// Qs,1
-// Ks,2
-
-size_t Comparer::hashFunction(const PrivateCard& privateCard) {
-    return privateCard.getCard().getRank() * 4 + privateCard.getCard().getSuit();
-}
+// JS 0
+// QS 1
+// KS 2
 
 
-Comparer::Comparer() : Comparer("KhunPoker/files/khun_list.txt") {}
+Comparer::Comparer() : Comparer("khun_list.txt") {}
 
 Comparer::Comparer(std::string filename) {
     this->khunMap = std::unordered_map<PrivateCard, int, PrivateCardHasher>();
 
 
-    std::ifstream file("KhunPoker/files/khun_list.txt");
+    std::ifstream file(filename);
     for (int i = 0; i < 3; i++) {
         string card;
         int value;
         file >> card >> value;
+        std::cout << card << " | " << value << "\n";
         Card card1(card);
         PrivateCard privateCard(card1);
-        khunMap[card1] = value;
+        khunMap[privateCard] = value;
     }
 
 }
