@@ -14,6 +14,9 @@ GameTree::GameTree(GameSetting gameSetting) : gameSetting(gameSetting) {
 
 vector<GameAction> GameTree::generateLegalActions(const GameState& gameState) {
     vector<GameAction> legalActions;
+    if (gameState.street == Street::TERMINAL) {
+        return legalActions;
+    }
     Player current_player = gameState.player_turn;
 
     // Get the current pot size and the amount of chips each player has committed
