@@ -5,6 +5,9 @@
 #include "ActionNode.h"
 #include "Trainable.h"
 
+#include <array>
+#include <algorithm>
+#include <numeric>
 #include <vector>
 
 using std::vector, std::shared_ptr, std::array;
@@ -12,6 +15,8 @@ using std::vector, std::shared_ptr, std::array;
 class CfrTrainable : Trainable {
 public:
     enum TrainableType {};
+
+    CfrTrainable(shared_ptr<ActionNode> actionNode);
 
     CfrTrainable();
 

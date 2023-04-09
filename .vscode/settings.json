@@ -62,6 +62,7 @@
     "codecvt": "cpp",
     "iostream": "cpp",
     "utility": "cpp",
-    "version": "cpp"
+    "version": "cpp",
+    "numeric": "cpp"
   }
 }
