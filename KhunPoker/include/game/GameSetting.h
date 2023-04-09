@@ -5,8 +5,13 @@
 
 /**
  * @struct GameSetting
- * @brief
- *
+ * 
+ * @param betCntLimit max amount of bets
+ * @param bet_sizes possible bet sizes
+ * @param initial_stick initial max effective stack
+ * @param additional_pot_amount amount of dead money in preflop
+ * @param allin_threshold when to go all in as opposed to bet x% of stack
+ * @param canAllIn whether all in is possible
 */
 struct GameSetting {
     int betCntLimit;
