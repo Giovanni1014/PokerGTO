@@ -32,7 +32,7 @@ private:
     shared_ptr<ActionNode> actionNode;
     const vector<shared_ptr<CfrTrainable>> childrenTrainables;
     vector<float> strategy; // * dim: (number of private hands) * (number of actions)
-    vector<float> cumulativeRegrets; // * dim: (number of actions)
+    vector<float> cumulativeRegrets; // * dim: (number of private hands) * (number of actions)
     int iterationCount;
 };
 

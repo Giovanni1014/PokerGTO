@@ -6,11 +6,19 @@
 
 using std::vector;
 
-class ShowdownNode: public GameTreeNode {
-    public:
-        ShowdownNode(float pot, shared_ptr<GameTreeNode> parent);
+class ShowdownNode : public GameTreeNode {
+public:
+    ShowdownNode();
+    ShowdownNode(float pot, shared_ptr<GameTreeNode> parent);
 
-        vector<float> utility(const Player player, const vector<float>& reach_probs, const vector<float>& opp_reach_probs) override;
+    vector<float> utility(const Player player, const vector<float>& reach_probs, const vector<float>& opp_reach_probs) override;
+
+    const GameTreeNodeType getType() override;
+
+    const float getPot() const;
+
+private:
+    const float pot{};
 };
 
 #endif // SHOWDOWNNODE_H

@@ -8,27 +8,32 @@
 
 using std::vector;
 
-class ActionNode: public GameTreeNode {
-    public:
-        ActionNode(vector<GameAction> actions, vector<shared_ptr<GameTreeNode>> children, Player player, float pot, shared_ptr<GameTreeNode> parent);
+class ActionNode : public GameTreeNode {
 
-        vector<float> utility(const Player player, const vector<float>& reach_probs, const vector<float>& opp_reach_probs) override;
+public:
+    ActionNode(vector<GameAction>& actions, vector<shared_ptr<GameTreeNode>>& childrens, Player player, shared_ptr<GameTreeNode> parent);
 
-        vector<GameAction>& getActions() const;
+    vector<float> utility(const Player player, const vector<float>& reach_probs, const vector<float>& opp_reach_probs) override;
 
-        vector<shared_ptr<GameTreeNode>>& getChildren() const;
 
-        shared_ptr<Trainable> getTrainable() const; // * removed indexing
+    const vector<GameAction>& getActions() const;
 
-        const Player getPlayer() const;
+    const vector<shared_ptr<GameTreeNode>>& getChildrens() const;
 
-        const GameTreeNodeType getType() override;
+    void setChildrens(vector<shared_ptr<GameTreeNode>>& childrens);
 
-    private:
-        const vector<GameAction> actions;
-        const vector<shared_ptr<GameTreeNode>> children;
-        const shared_ptr<Trainable> trainable; // * removed vector
-        const Player player;
+    const shared_ptr<Trainable> getTrainable() const; // * removed indexing
+
+    const Player getPlayer() const;
+
+    const GameTreeNodeType getType() override;
+
+private:
+    const vector<GameAction> actions;
+    vector<shared_ptr<GameTreeNode>> childrens;
+    const shared_ptr<Trainable> trainable; // * removed vector
+    const Player player;
+
 };
 
 #endif // ACTIONNODE_H
