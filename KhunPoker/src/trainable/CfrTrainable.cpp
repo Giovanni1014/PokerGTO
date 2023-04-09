@@ -14,7 +14,12 @@ void CfrTrainable::updateRegrets(const array<vector<float>, 2>& reachProbs) {
 
 void CfrTrainable::updateStrategy(const array<vector<float>, 2>& reachProbs) {
     // 1. call updateStrategy of ChildrenTrainables
-    // 2. 
+    // in updateRegrets
+        // 2. calculate the utility (temporary) by weighting children's utilities
+        // 3. use that and the children's utilities, and OUR reachprob (reachProbs[player]) to calculate newest regret
+        // 4. update cumulativeRegrets with newest regret and OUR reachprob
+    // back in this function
+        // 5. use cumulativeRegrets to update strategy
 
 }
 
