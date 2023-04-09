@@ -11,7 +11,6 @@
 #include "Street.h"
 
 #include "GameTree.h"
-#include "GameTreeNodeType.h"
 #include "GameSetting.h"
 #include "Solver.h"
 
