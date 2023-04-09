@@ -4,10 +4,10 @@ GameTreeNode::GameTreeNode() {}
 
 GameTreeNode::~GameTreeNode() {}
 
-GameTreeNode::GameTreeNode(shared_ptr<GameTreeNode> parent): parent(parent) {}
+GameTreeNode::GameTreeNode(shared_ptr<GameTreeNode> parent) : parent(parent) {}
 
-vector<float> GameTreeNode::utility(const Player player, const vector<float>& reachProbs) {
-    return vector<float>{};
+vector<float> GameTreeNode::getUtility(const Player player) {
+    return this->utility[static_cast<int>(player)];
 }
 
 shared_ptr<GameTreeNode> GameTreeNode::getParent() const {

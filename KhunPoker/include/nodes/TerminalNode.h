@@ -6,13 +6,13 @@
 
 using std::vector;
 
-class TerminalNode: public GameTreeNode {
+class TerminalNode : public GameTreeNode {
 public:
     TerminalNode();
 
     TerminalNode(Player winner, float pot, shared_ptr<GameTreeNode> parent);
 
-    vector<float> utility(const Player player, const vector<float>& reachProbs) override;
+    vector<float> utility(const Player player, const vector<float>& reach_probs, const vector<float>& opp_reach_probs) override;
 
     const GameTreeNodeType getType() override;
 

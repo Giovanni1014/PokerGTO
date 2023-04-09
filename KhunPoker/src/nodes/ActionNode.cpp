@@ -1,12 +1,19 @@
 #include "ActionNode.h"
 
 ActionNode::ActionNode(vector<GameAction>& actions, vector<shared_ptr<GameTreeNode>>& childrens,
-    Player player, shared_ptr<GameTreeNode> parent): GameTreeNode(parent), actions(actions), childrens(childrens), trainable(std::make_shared<Trainable>()), player(player) {
+    Player player, shared_ptr<GameTreeNode> parent) : GameTreeNode(parent), actions(actions), childrens(childrens), trainable(std::make_shared<Trainable>()), player(player) {
 }
 
-vector<float> ActionNode::utility(const Player player, const vector<float>& reachProbs) {
-    // TODO implement
-    return vector<float>{};
+vector<float> ActionNode::utility(const Player player, const vector<float>& reach_probs, const vector<float>& opp_reach_probs) {
+    const int n = reach_probs.size();
+    vector<float> finalUtil(n, 0.0f);
+    for (int i = 0; i < children.size(); i++) {
+        vector<float> curr = (children[i].get())->utility(player, reach_probs, opp_reach_probs);
+        for (int j = 0; j < curr.size(); j++) {
+            finalUtil[j] += curr[j] * getTrainable().get()->getCurrentStrategy()[j];
+        }
+    }
+    return finalUtil;
 }
 
 const vector<GameAction>& ActionNode::getActions() const {
