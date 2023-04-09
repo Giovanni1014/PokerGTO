@@ -6,13 +6,15 @@
 using namespace std;
 
 class Trainable {
-    public:
-        enum TrainableType { };
-        virtual const vector<float> getAverageStrategy() = 0;
-        virtual const vector<float> getCurrentStrategy() = 0;
-        virtual void updateRegrets(const vector<float>& regrets, int iteration_number, const vector<float>& reach_probs) = 0;
-        virtual void copyStrategy(shared_ptr<Trainable> other_trainable) = 0;
-        virtual TrainableType get_type() = 0;
+public:
+    enum TrainableType {
+        CFR_TRAINABLE
+    };
+
+    virtual const vector<float> getStrategy() = 0;
+    virtual void updateRegrets(const vector<float>& reachProbs) = 0;
+    virtual void updateStrategy() = 0;
+    virtual TrainableType getType() = 0;
 };
 
 #endif // TRAINABLE_H 
