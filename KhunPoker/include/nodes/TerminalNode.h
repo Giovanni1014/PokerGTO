@@ -16,7 +16,10 @@ public:
 
     const GameTreeNodeType getType() override;
 
+    const float getPot() const;
+
 private:
+    const float pot{};
     const Player winner{};
 };
 

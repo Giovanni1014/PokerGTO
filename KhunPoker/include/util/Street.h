@@ -6,16 +6,13 @@
 #ifndef STREET_H
 #define STREET_H
 
-/** 
+ /**
  * @enum Street
  * @brief assign ints to streets for use in GameState
  */
-enum Street
-{
-  PREFLOP,
-  FLOP,
-  TURN,
-  RIVER
+enum Street {
+  INGAME,
+  TERMINAL
 };
 
 #endif //STREET_H

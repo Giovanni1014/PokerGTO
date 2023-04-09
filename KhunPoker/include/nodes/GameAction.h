@@ -5,9 +5,8 @@
 #include <vector>
 #include "nodes/GameTreeNode.h"
 
-class GameAction {
-public:
-    enum PokerAction {
+struct GameAction {
+    enum ActionType {
         INIT_BET,
         RAISE,
         CHECK,
@@ -15,19 +14,10 @@ public:
         CALL
     };
 
-    GameAction();
+    const ActionType type;
+    const float amount;
 
-    GameAction(PokerAction action, float amount);
-
-    const PokerAction getAction() const;
-
-    const float getAmount() const;
-
-    std::string toString() const;
-
-private:
-    const PokerAction action;
-    const float amount{};
+    GameAction(ActionType type, float amount) : type(type), amount(amount) {}
 };
 
 #endif // GAMEACTION_H

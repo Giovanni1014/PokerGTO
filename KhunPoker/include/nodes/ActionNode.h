@@ -10,15 +10,17 @@ using std::vector;
 
 class ActionNode: public GameTreeNode {
 public:
-    ActionNode(vector<GameAction> actions, vector<shared_ptr<GameTreeNode>> childrens, Player player, float pot, shared_ptr<GameTreeNode> parent);
+    ActionNode(vector<GameAction>& actions, vector<shared_ptr<GameTreeNode>>& childrens, Player player, shared_ptr<GameTreeNode> parent);
 
     vector<float> utility(const Player player, const vector<float>& reach_probs) override;
 
-    vector<GameAction>& getActions() const;
+    const vector<GameAction>& getActions() const;
 
-    vector<shared_ptr<GameTreeNode>>& getChildrens() const;
+    const vector<shared_ptr<GameTreeNode>>& getChildrens() const;
 
-    shared_ptr<Trainable> getTrainable() const; // * removed indexing
+    void setChildrens(vector<shared_ptr<GameTreeNode>>& childrens);
+
+    const shared_ptr<Trainable> getTrainable() const; // * removed indexing
 
     const Player getPlayer() const;
 
@@ -26,7 +28,7 @@ public:
 
 private:
     const vector<GameAction> actions;
-    const vector<shared_ptr<GameTreeNode>> childrens;
+    vector<shared_ptr<GameTreeNode>> childrens;
     const shared_ptr<Trainable> trainable; // * removed vector
     const Player player;
 };
