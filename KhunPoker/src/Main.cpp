@@ -12,9 +12,12 @@
 
 #include "GameTree.h"
 #include "GameSetting.h"
+#include "Solver.h"
 
 
-using std::vector, std::shared_ptr, std::make_shared;
+
+using std::vector, std::shared_ptr, std::unique_ptr,
+std::make_unique, std::make_shared;
 
 /**
  * @file Main.cpp
@@ -29,8 +32,35 @@ int main() {
     vector<float> betSizes = {1.0, 2.0};
     GameSetting gameSetting(1, betSizes, 0, 0, (double)0.5, true);
 
+    //create initial game state
+    GameState gameState(
+        Street::INGAME,
+        0,
+        0,
+        Player::OOP,
+        0
+    );
+
     //create and build gameTree
-    GameTree gameTree();
+    GameTree gameTree(gameSetting);
+    gameTree.build(gameState); //TODO: make this function exist
 
+    //create solver, then train
+    shared_ptr<Solver> solver = make_shared<Solver>(gameTree);
+    solver->train();
 
+    //print the strategy
+    printStrategy(gameTree.root, solver);
+}
+
+void printStrategy(shared_ptr<GameTreeNode> node, const shared_ptr<Solver> solver, int depth = 0) {
+  if (auto actionNode = std::dynamic_pointer_cast<ActionNode>(node)) {
+    auto strategy = solver->get_strategy(actionNode, {});
+    for (int i = 0; i < strategy.size(); ++i) {
+      for (int j = 0; j < strategy[i].size(); ++j) {
+        std::cout << "Action " << j << " Probability " << strategy[i][j][0] << "\n";
+        printStrategy(actionNode->getChildrens()[j], solver);
+      }
+    }
+  }
 }
