@@ -11,13 +11,10 @@
 #include "Street.h"
 
 #include "GameTree.h"
-#include "GameTreeNodeType.h"
 #include "GameSetting.h"
 #include "Solver.h"
 
-
-
-using std::vector, std::shared_ptr, std::make_unique, std::make_shared;
+using std::vector;
 
 /**
  * @file Main.cpp
@@ -42,32 +39,21 @@ int main() {
     );
 
     //create and build gameTree
-    GameTree gameTree(gameSetting);
-    gameTree.build(gameState); //TODO: make this function exist
+    shared_ptr<GameTree> gameTree = std::make_shared<GameTree>(gameSetting);
+    gameTree->build(gameState);
 
-    //create solver, then train
-    shared_ptr<Solver> solver = make_shared<Solver>(gameTree);
-    solver->train();
-
-    //print the strategy
-    std::cout << "[J, Q, K]";
-    printStrategy(gameTree.root, solver);
+    //cfr
+    train(100000, gameTree, true);
 }
 
-void printStrategy(shared_ptr<GameTreeNode> node, const shared_ptr<Solver> solver, int depth = 0) {
-    if (node->getType() == GameTreeNode::GameTreeNodeType::ACTION) 
-        //grab strategy and evs
-        vector<vector<vector<float>>> strategy = solver->getStrategy(actionNode, {}); //? what should the cards vector be
-        vector<vector<vector<float>>> evs = solver->getEvs(actionNode, {}); //? what should the cards vector be
-
-        //print the context
-        std::cout << "Strategy for node [" << depth << "] (" << actionNode->getPlayer() << "): \n";
-        depth++;
-
-        //TODO: print the strategy/evs, depends on how its formatted
-    }
-    //recurse
-    for (shared_ptr<GameTreeNode> child : actionNode->getChildrens()) {
-        printStrategy(child, solver);
+void train(int iterations, std::shared_ptr<GameTree>& gameTree, bool print = false) {
+    const int PRINT_STEP = 5000;
+    for (int i = 0; i < (iterations / PRINT_STEP); i++) {
+        for (int j = 0; j < PRINT_STEP; j++) {
+            gameTree->root->getTrainables()->updateStrategy();
+            if (print) {
+                std::cout << gameTree->toString() << "\n";
+            }
+        }
     }
 }
