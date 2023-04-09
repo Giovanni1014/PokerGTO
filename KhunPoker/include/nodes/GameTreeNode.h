@@ -24,7 +24,7 @@ public:
 
     shared_ptr<GameTreeNode> getParent() const;
 
-    virtual vector<float> utility(const Player player, const vector<float>& reach_probs);
+    virtual vector<float> utility(const Player player, const vector<float>& reachProbs);
 
 
     virtual const GameTreeNodeType getType() = 0;

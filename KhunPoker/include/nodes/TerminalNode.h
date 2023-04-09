@@ -12,7 +12,7 @@ public:
 
     TerminalNode(Player winner, float pot, shared_ptr<GameTreeNode> parent);
 
-    vector<float> utility(const Player player, const vector<float>& reach_probs) override;
+    vector<float> utility(const Player player, const vector<float>& reachProbs) override;
 
     const GameTreeNodeType getType() override;
 

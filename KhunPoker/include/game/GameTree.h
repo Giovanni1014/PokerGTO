@@ -23,7 +23,6 @@
 class GameTree {
 public:
     std::shared_ptr<GameTreeNode> root;
-    // std::shared_ptr<GameState> gameState;
     const GameSetting gameSetting;
 
     GameTree(GameSetting gameSetting);

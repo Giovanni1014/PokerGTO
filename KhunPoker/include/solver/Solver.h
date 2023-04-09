@@ -19,8 +19,8 @@ public:
     shared_ptr<GameTree> getTree();
     virtual void train() = 0;
     virtual void stop() = 0;
-    virtual vector<vector<vector<float>>> get_strategy(shared_ptr<ActionNode> node, vector<Card> cards) = 0;
-    virtual vector<vector<vector<float>>> get_evs(shared_ptr<ActionNode> node, vector<Card> cards) = 0;
+    virtual vector<vector<vector<float>>> getStrategy(shared_ptr<ActionNode> node, vector<Card> cards) = 0;
+    virtual vector<vector<vector<float>>> getEvs(shared_ptr<ActionNode> node, vector<Card> cards) = 0;
 
     shared_ptr<GameTree> tree;
 };

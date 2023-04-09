@@ -4,7 +4,7 @@ ActionNode::ActionNode(vector<GameAction>& actions, vector<shared_ptr<GameTreeNo
     Player player, shared_ptr<GameTreeNode> parent): GameTreeNode(parent), actions(actions), childrens(childrens), trainable(std::make_shared<Trainable>()), player(player) {
 }
 
-vector<float> ActionNode::utility(const Player player, const vector<float>& reach_probs) {
+vector<float> ActionNode::utility(const Player player, const vector<float>& reachProbs) {
     // TODO implement
     return vector<float>{};
 }
