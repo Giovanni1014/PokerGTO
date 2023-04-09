@@ -25,6 +25,8 @@ public:
     void updateStrategy(const array<vector<float>, 2>& reachProbs) override;
 
     Trainable::TrainableType getType() override;
+    
+    std::string toString();
 
 private:
     void updateRegrets(const array<vector<float>, 2>& reachProbs) override;

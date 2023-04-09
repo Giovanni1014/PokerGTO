@@ -46,14 +46,9 @@ int main() {
     train(100000, gameTree, true);
 }
 
-void train(int iterations, std::shared_ptr<GameTree>& gameTree, bool print = false) {
+void train(int iterations, shared_ptr<GameTree> gameTree, bool print = false) {
     const int PRINT_STEP = 5000;
-    for (int i = 0; i < (iterations / PRINT_STEP); i++) {
-        for (int j = 0; j < PRINT_STEP; j++) {
-            gameTree->root->getTrainables()->updateStrategy();
-            if (print) {
-                std::cout << gameTree->toString() << "\n";
-            }
-        }
+    for (int i = 0; i < iterations; i++) {
+        gameTree->root->trainables->updateStrategy(i % PRINT_STEP == 0 ? print : false);
     }
 }
