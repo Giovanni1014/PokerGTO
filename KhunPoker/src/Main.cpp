@@ -11,6 +11,7 @@
 #include "Street.h"
 
 #include "GameTree.h"
+#include "GameTreeNodeType.h"
 #include "GameSetting.h"
 #include "Solver.h"
 
@@ -50,17 +51,25 @@ int main() {
     solver->train();
 
     //print the strategy
+    std::cout << "[J, Q, K]";
     printStrategy(gameTree.root, solver);
 }
 
 void printStrategy(shared_ptr<GameTreeNode> node, const shared_ptr<Solver> solver, int depth = 0) {
-  if (auto actionNode = std::dynamic_pointer_cast<ActionNode>(node)) {
-    auto strategy = solver->get_strategy(actionNode, {});
-    for (int i = 0; i < strategy.size(); ++i) {
-      for (int j = 0; j < strategy[i].size(); ++j) {
-        std::cout << "Action " << j << " Probability " << strategy[i][j][0] << "\n";
-        printStrategy(actionNode->getChildrens()[j], solver);
-      }
+    if (node->getType() == GameTreeNode::GameTreeNodeType::ACTION) 
+        //grab strategy and evs
+        vector<vector<vector<float>>> strategy = solver->get_strategy(actionNode, {}); //? what should the cards vector be
+        vector<vector<vector<float>>> evs = solver->get_evs(actionNode, {}); //? what should the cards vector be
+
+        //print the context
+        std::cout << "Strategy for node [" << depth << "] (" << actionNode->getPlayer() << "): \n";
+        depth++;
+
+        //TODO: print the strategy/evs, depends on how its formatted
+
+        //recurse
+        for (shared_ptr<GameTreeNode> child : actionNode->getChildrens()) {
+            printStrategy(child, solver);
+        }
     }
-  }
 }
