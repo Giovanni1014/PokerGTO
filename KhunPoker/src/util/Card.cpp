@@ -24,3 +24,11 @@ void Card::operator=(const Card& card) {
     this->cardAsString[0] = Card::RANKS_AS_CHAR[card.getRank()];
     this->cardAsString[1] = Card::SUITS_AS_CHAR[card.getSuit()];
 }
+
+bool Card::operator==(const Card& card) const {
+    return this->rank == card.getRank() && this->suit == card.getSuit();
+}
+
+bool Card::operator!=(const Card& card) const {
+    return !(*this == card);
+}

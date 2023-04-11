@@ -50,7 +50,7 @@ std::shared_ptr<vector<GameState>> GameTree::generateChildrenStates(const GameSt
 
     for (GameAction action : actions) {
         switch (action.type) {
-            case GameAction::RAISE:
+            case GameAction::RAISE: {
                 int new_oop_commit = gameState.oop_commit;
                 int new_ip_commit = gameState.ip_commit;
                 if (gameState.player_turn == Player::OOP) {
@@ -62,11 +62,12 @@ std::shared_ptr<vector<GameState>> GameTree::generateChildrenStates(const GameSt
                     Street::INGAME,
                     new_oop_commit,
                     new_ip_commit,
-                    (Player)(1 - gameState.player_turn),
+                    (Player) (1 - gameState.player_turn),
                     gameState.bet_count + 1
                 ));
                 break;
-            case GameAction::CHECK:
+            }
+            case GameAction::CHECK: {
                 Street street = gameState.player_turn == Player::OOP ? Street::INGAME : Street::TERMINAL;
                 childrenStates.push_back(GameState(
                     street,
@@ -76,16 +77,18 @@ std::shared_ptr<vector<GameState>> GameTree::generateChildrenStates(const GameSt
                     gameState.bet_count
                 ));
                 break;
-            case GameAction::FOLD:
+            }
+            case GameAction::FOLD: {
                 childrenStates.push_back(GameState(
                     Street::TERMINAL,
                     gameState.oop_commit,
                     gameState.ip_commit,
-                    (Player)(1 - gameState.player_turn),
+                    (Player) (1 - gameState.player_turn),
                     gameState.bet_count
                 ));
                 break;
-            case GameAction::CALL:
+            }
+            case GameAction::CALL: {
                 int new_oop_commit = gameState.oop_commit;
                 int new_ip_commit = gameState.ip_commit;
                 if (gameState.player_turn == Player::OOP) {
@@ -97,9 +100,12 @@ std::shared_ptr<vector<GameState>> GameTree::generateChildrenStates(const GameSt
                     Street::TERMINAL,
                     new_oop_commit,
                     new_ip_commit,
-                    (Player)(1 - gameState.player_turn),
+                    (Player) (1 - gameState.player_turn),
                     0
                 ));
+                break;
+            }
+            default:
                 break;
         }
     }
