@@ -26,6 +26,8 @@ public:
     Suit getSuit() const;
 
     void operator=(const Card& card);
+    bool operator==(const Card& card) const;
+    bool operator!=(const Card& card) const;
 };
 
 #endif //CARD_H
